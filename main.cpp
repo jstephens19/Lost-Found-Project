@@ -19,5 +19,31 @@ void searchItem(const vector<Item>& items);    //search items
 
 int main ()
 {
-  
+      vector<Item> items;
+    int choice;
+
+    while (true) {
+        cout << "\nLost & Found Menu:\n";
+        cout << "1. Add Item\n2. Display Items\n3. Search Item\n4. Exit\n";
+        
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+            case 1:
+                addItem(items);
+                break;
+            case 2:
+                displayItems(items);
+                break;
+            case 3:
+                searchItem(items);
+                break;
+            case 4:
+                cout << "Exiting..." << endl;
+                return 0;
+            default:
+                cout << "Invalid choice. Try again." << endl;
+        }
+    }
 }
