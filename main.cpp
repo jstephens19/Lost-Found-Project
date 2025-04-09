@@ -16,6 +16,7 @@ class Item {        // Item class
 void addItem(vector<Item>& items);    //add new items
 void displayItems(const vector<Item>& items);    //display items
 void searchItem(const vector<Item>& items);    //search items
+void addLostItems(int user_id, const string& item_name, const string& description, const string& lost_date, const string& location);  // Store item in MySQL
 
 int main ()
 {
