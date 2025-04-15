@@ -11,7 +11,7 @@ void addLostItems(int user_id, const string& item_name, const string& descriptio
         //SQL  instance
         driver = sql::mysql::get_mysql_driver_instance();
         //connect to database 
-        con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
+        con = driver->connect("tcp://127.0.0.1:3306", "root", "Sp0ngebob41913!?");
         // Set the schema/database name
         con->setSchema("lost_found");
 
