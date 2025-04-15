@@ -32,7 +32,7 @@ int main()
         sql::Connection *con;
 
         driver = sql::mysql::get_mysql_driver_instance();
-        con = driver->connect("tcp://127.0.0.1:3306", "root", "root"); 
+        con = driver->connect("tcp://127.0.0.1:3306", "root", "Sp0ngebob41913!?"); 
         con->setSchema("lost_found");  //database
 
         // INSERT SQL statement
