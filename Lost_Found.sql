@@ -1,7 +1,7 @@
 CREATE TABLE lost_found.users (
     user_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,
-    contact VARCHAR(50) NOT NULL UNIQUE
+    email VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE lost_found.lost_items (
