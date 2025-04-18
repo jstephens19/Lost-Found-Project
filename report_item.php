@@ -12,7 +12,7 @@ $item_name = $_POST['item_name'];
 $description = $_POST['description'];
 $lost_date = $_POST['lost_date'];
 $location = $_POST['location'];
-$contact = $_POST['contact'];
+$contact = $_POST['email'];
 
 //image upload
 $target_dir = "uploads/";
@@ -32,7 +32,7 @@ if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 }
 
 //insert user contact info into users table
-$stmt = $con->prepare("INSERT INTO users (name, contact) VALUES (?, ?)");
+$stmt = $con->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
 $stmt->bind_param("ss", $item_name, $contact);
 $stmt->execute();
 $user_id = $stmt->insert_id;
