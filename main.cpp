@@ -4,6 +4,8 @@
 #include <iostream>
 #include<vector>
 
+using namespace std;
+
 class Item {        // Item class
   public:
     string name;    // Name of item
