@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPLICITY</title>
+    <style>
+        
+        html 
+		{
+            scroll-behavior: smooth;
+        }
+
+        /* styling */
+        nav 
+		{
+            background-color: #00008B;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul 
+		{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li 
+		{
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a 
+		{
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 12px;
+        }
+        nav ul li a:hover 
+		{
+            background-color: #007BFF;
+            border-radius: 5px;
+        }
+
+        /* first */
+        .welcome-section 
+		{
+			background-image: url('lostfoundiconblacksign.jpg');
+			background-size: contain;
+			background-position: top center;
+			background-repeat: no-repeat;
+			width: 100%;
+			height: 300px; 
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end; 
+			align-items: center;
+			text-align: center;
+			padding-top: 200px; 
+        }
+		
+
+        /* style for login/signup section */
+        .auth-container 
+		{
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        .form-box 
+		{
+            width: 100%;
+        }
+
+        .form-box h2 
+		{
+            color: #0056b3;
+        }
+
+        .form-box input 
+		{
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-box button 
+		{
+            background-color: #0056b3;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .form-box button:hover 
+		{
+            background-color: #003f6b;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- tab menu -->
+    <nav>
+        <ul>
+            <li><a href="lostsimplicityfound.html">Home</a></li>
+            <li><a href="lost.html">Lost Items</a></li>
+            <li><a href="found.html">Found Items</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="report.html">Report</a></li>
+			<li><a href="about.html">About</a></li>
+            <li><a href="#" onclick="toggleForm()">Sign Up / Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- login/signup form -->
+    <div class="auth-container">
+        <div class="form-box">
+            <h2>Login</h2>
+            <form action="login.php" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+
+        <div class="form-box">
+            <h2>Sign Up</h2>
+            <form action="signup.php" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- welcome section -->
+    <div class="welcome-section">
+        <h1>It's SIMPLY Lost & We Found It</h1>
+        <p>This is the home page.</p>
+    </div>
+
+    <script>
+        // function to toggle the login/signup form 
+        function toggleForm() {
+            const authContainer = document.querySelector('.auth-container');
+            if (authContainer.style.display === 'none' || authContainer.style.display === '') {
+                authContainer.style.display = 'flex';
+            } else {
+                authContainer.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
