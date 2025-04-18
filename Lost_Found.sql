@@ -3,6 +3,7 @@ CREATE TABLE lost_found.users (
     name VARCHAR(255) NOT NULL,
     contact VARCHAR(50) NOT NULL UNIQUE
 );
+
 CREATE TABLE lost_found.lost_items (
     lost_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -10,8 +11,11 @@ CREATE TABLE lost_found.lost_items (
     description TEXT,
     lost_date DATE,
     location VARCHAR(255),
+    image LONGBLOB,
+    image_type VARCHAR(50),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+
 CREATE TABLE lost_found.found_items (
     found_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -19,8 +23,11 @@ CREATE TABLE lost_found.found_items (
     description TEXT,
     found_date DATE,
     location VARCHAR(255),
+    image LONGBLOB,
+    image_type VARCHAR(50),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+
 CREATE TABLE lost_found.matches (
     match_id INT AUTO_INCREMENT PRIMARY KEY,
     lost_id INT NOT NULL,
