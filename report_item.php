@@ -12,7 +12,7 @@ $item_name = $_POST['item_name'];
 $description = $_POST['description'];
 $lost_date = $_POST['lost_date'];
 $location = $_POST['location'];
-$contact = $_POST['email'];
+$email = $_POST['email'];
 
 //image upload
 $target_dir = "uploads/";
