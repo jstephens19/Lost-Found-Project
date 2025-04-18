@@ -8,32 +8,32 @@ if ($con->connect_error) {
 }
 
 //get form data
+$name = $_POST['name'];
+$email = $_POST['email'];
 $item_name = $_POST['item_name'];
 $description = $_POST['description'];
 $lost_date = $_POST['lost_date'];
 $location = $_POST['location'];
-$email = $_POST['email'];
 
-//image upload
+//upload image
 $target_dir = "uploads/";
-$image_name = basename($_FILES["image"]["name"]);
+$image_name = basename($_FILES["item_image"]["name"]);
 $target_file = $target_dir . time() . "_" . $image_name;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 //validate image 
-$check = getimagesize($_FILES["image"]["tmp_name"]);
+$check = getimagesize($_FILES["item_image"]["tmp_name"]);
 if ($check === false) {
     die("File is not an image.");
 }
 
-
-if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+if (!move_uploaded_file($_FILES["item_image"]["tmp_name"], $target_file)) {
     die("Sorry, there was an error uploading your file.");
 }
 
-//insert user contact info into users table
+//insert user info into users table
 $stmt = $con->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
-$stmt->bind_param("ss", $item_name, $contact);
+$stmt->bind_param("ss", $name, $email);
 $stmt->execute();
 $user_id = $stmt->insert_id;
 $stmt->close();
@@ -47,4 +47,3 @@ $stmt->close();
 echo "Item reported successfully.";
 $con->close();
 ?>
-
