@@ -5,7 +5,7 @@
 $dbHost = '127.0.0.1';
 $dbName = 'campus_lost_found';
 $dbUser = 'root';
-$dbPass = 'bjfischer'; // default XAMPP root password is empty
+$dbPass = 'bjfischer';
 
 try {
     $pdo = new PDO(
@@ -18,6 +18,5 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // In production, log rather than echo
     die("Database connection failed: " . $e->getMessage());
 }
