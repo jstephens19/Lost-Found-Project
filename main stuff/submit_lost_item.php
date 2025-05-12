@@ -14,8 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES['item_image']['tmp_name'], $uploaded_file);
     }
 
-    // Here, you would typically insert the data into a database
-    // For demonstration, we'll just display the submitted information
     echo "<h2>Lost Item Report Submitted</h2>";
     echo "<p>Name: $name</p>";
     echo "<p>Email: $email</p>";
