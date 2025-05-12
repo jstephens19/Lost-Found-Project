@@ -1,49 +1,34 @@
-<?php
-//db connection
-$con = new mysqli("localhost", "root", "Sp0ngebob41913!?", "lost_found");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Lost Item</title>
+</head>
+<body>
+    <h1>Report a Lost Item</h1>
+    <form action="report_item.php" method="post" enctype="multipart/form-data">
+        <label for="name">Your Name:</label><br>
+        <input type="text" name="name" required><br><br>
 
-//check connection
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-}
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" required><br><br>
 
-//get form data
-$name = $_POST['name'];
-$email = $_POST['email'];
-$item_name = $_POST['item_name'];
-$description = $_POST['description'];
-$lost_date = $_POST['lost_date'];
-$location = $_POST['location'];
+        <label for="item_name">Item Name:</label><br>
+        <input type="text" name="item_name" required><br><br>
 
-//upload image
-$target_dir = "uploads/";
-$image_name = basename($_FILES["item_image"]["name"]);
-$target_file = $target_dir . time() . "_" . $image_name;
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        <label for="description">Description:</label><br>
+        <textarea name="description" required></textarea><br><br>
 
-//validate image 
-$check = getimagesize($_FILES["item_image"]["tmp_name"]);
-if ($check === false) {
-    die("File is not an image.");
-}
+        <label for="lost_date">Date Lost:</label><br>
+        <input type="date" name="lost_date" required><br><br>
 
-if (!move_uploaded_file($_FILES["item_image"]["tmp_name"], $target_file)) {
-    die("Sorry, there was an error uploading your file.");
-}
+        <label for="location">Location:</label><br>
+        <input type="text" name="location" required><br><br>
 
-//insert user info into users table
-$stmt = $con->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
-$stmt->bind_param("ss", $name, $email);
-$stmt->execute();
-$user_id = $stmt->insert_id;
-$stmt->close();
+        <label for="item_image">Upload Image:</label><br>
+        <input type="file" name="item_image" accept="image/*" required><br><br>
 
-//insert item into lost_items table
-$stmt = $con->prepare("INSERT INTO lost_items (user_id, item_name, description, lost_date, location, image_path) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("isssss", $user_id, $item_name, $description, $lost_date, $location, $target_file);
-$stmt->execute();
-$stmt->close();
-
-echo "Item reported successfully.";
-$con->close();
-?>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
