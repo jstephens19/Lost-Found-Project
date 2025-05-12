@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (empty($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit;
-}
 require_once __DIR__ . '/../src/db.php';
 $stmt = $pdo->prepare("SELECT * FROM items WHERE status = 'lost' ORDER BY created_at DESC");
 $stmt->execute();
