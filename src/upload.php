@@ -1,5 +1,4 @@
 <?php
-// src/upload.php
 require_once __DIR__ . '/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -33,7 +32,7 @@ if (!in_array($ext, $allowed, true)) {
 }
 
 // Make uploads directory under project root
-$targetDir = __DIR__ . '/../uploads/';
+$targetDir = __DIR__ . '/uploads/';
 if (!is_dir($targetDir) && !mkdir($targetDir, 0755, true)) {
     exit('Failed to create uploads directory.');
 }
@@ -57,6 +56,6 @@ $stmt->execute([
     ':image'       => $publicPath,
 ]);
 
-// Redirect back to the appropriate listing
+// Redirect
 header("Location: {$status}.php");
 exit;
