@@ -15,7 +15,6 @@ $items = $stmt->fetchAll();
   <h1>Found Items</h1>
   <nav>
     <a href="lost.php">View Lost Items</a> |
-    <a href="upload_form.php">Report an Item</a>
   </nav>
   <div class="grid">
     <?php if ($items): foreach ($items as $item): ?>
