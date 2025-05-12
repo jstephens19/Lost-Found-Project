@@ -1,3 +1,21 @@
+<?php
+// Database connection
+$con = new mysqli("localhost", "root", "bjfischer", "campus_lost_found");
+
+// Check connection
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+}
+
+// Retrieve lost items from the database
+$sql = "SELECT li.item_name, li.description, li.lost_date, li.location, li.image_path, u.name, u.email
+        FROM lost_items li
+        JOIN users u ON li.user_id = u.id
+        ORDER BY li.lost_date DESC";
+
+$result = $con->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost Items - SIMPLICITY</title>
     <style>
+        /* Your existing CSS styles */
         html {
             scroll-behavior: smooth;
         }
@@ -83,12 +102,30 @@
     <div class="items-container">
         <h2 style="text-align:center;">Recently Reported Lost Items</h2>
 
-  
+        <?php if ($result->num_rows > 0): ?>
+            <?php while($row = $result->fetch_assoc()): ?>
+                <div class="item">
+                    <h3><?php echo htmlspecialchars($row['item_name']); ?></h3>
+                    <p><strong>Description:</strong> <?php echo htmlspecialchars($row['description']); ?></p>
+                    <p><strong>Date Lost:</strong> <?php echo htmlspecialchars($row['lost_date']); ?></p>
+                    <p><strong>Location:</strong> <?php echo htmlspecialchars($row['location']); ?></p>
+                    <?php if (!empty($row['image_path'])): ?>
+                        <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Item Image">
+                    <?php else: ?>
+                        <p>No image available.</p>
+                    <?php endif; ?>
+                    <p><strong>Reported By:</strong> <?php echo htmlspecialchars($row['name']); ?> (<?php echo htmlspecialchars($row['email']); ?>)</p>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
             <p style='text-align:center;'>No lost items have been reported yet.</p>
-       
-
- 
+        <?php endif; ?>
     </div>
 
 </body>
 </html>
+
+<?php
+// Close the database connection
+$con->close();
+?>
